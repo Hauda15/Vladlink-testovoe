@@ -7,24 +7,30 @@
 composer install
 ```
 
-## 2. Настройка MySQL
+## 2. Заполните переменные окружения
+* В корне проекта создайте текстовый файл .env без расширения
+* Заполните необходимые для подключения к БД данные
+* Пример можно найти в файле .env.example
+
+## 3. Настройка MySQL
+***Все значения с префиксом DB_ нужно взять из результата предыдущего пункта*** 
 ```MySQL
-CREATE DATABASE vladlink_test;
-CREATE USER 'vladlink_test_user'@'localhost' IDENTIFIED BY 'vladlink_test_password';
-GRANT ALL PRIVILEGES ON vladlink_test.* TO 'vladlink_test_user'@'localhost';
+CREATE DATABASE 'DB_NAME';
+CREATE USER 'DB_USER'@'DB_HOST' IDENTIFIED BY 'DB_PASS';
+GRANT ALL PRIVILEGES ON 'DB_NAME'.* TO 'DB_USER'@'DB_HOST';
 FLUSH PRIVILEGES;
 ```
 
-## 3. Создание схемы базы данных
+## 4. Создание схемы базы данных
 ```bash
    php bin/doctrine.php orm:schema-tool:create
 ```
 
-## 4. Импорт категорий из JSON
+## 5. Импорт категорий из JSON
 ```bash
    php bin/import.php
 ```
-## 5. Экспорт категорий
+## 6. Экспорт категорий
 ### Тип А:
 ```bash
    php bin/export.php a text_a.txt
@@ -34,12 +40,12 @@ FLUSH PRIVILEGES;
    php bin/export.php b text_b.txt
 ```
 
-## 6. Запуск локального сервера
+## 7. Запуск локального сервера
 ```bash
    php -S 127.0.0.1:8000
 ```
 
-## 7. Доступ к меню
+## 8. Доступ к меню
 Меню в виде списка доступно по адресу:
 
 http://127.0.0.1:8000/list_menu.php
