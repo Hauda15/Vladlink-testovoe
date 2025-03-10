@@ -2,15 +2,8 @@
 
 namespace Services;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Models\Category;
-
 class RenderService
 {
-    private EntityManagerInterface $entityManager;
-    private \Doctrine\ORM\EntityRepository $categoriesRepository;
-    private array $categories;
-
     public function renderMenu(array $categories, int $level = 0): string
     {
         if (empty($categories)) return '';
